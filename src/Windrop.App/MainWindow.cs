@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using Windrop.Domain;
 using Forms = System.Windows.Forms;
@@ -45,6 +46,7 @@ public sealed class MainWindow : Window
         _historyRepository = historyRepository;
         _clipboard = clipboard;
         _restart = restart;
+        Icon = BitmapFrame.Create(new Uri("pack://application:,,,/Assets/app-icon.ico"));
         Width = 800; Height = 590; MinWidth = 680; MinHeight = 480;
         WindowStartupLocation = WindowStartupLocation.CenterScreen;
         Content = BuildContent();

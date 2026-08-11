@@ -5,10 +5,21 @@
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets\app-icon.ico</ApplicationIcon>
     <AssemblyName>Archura.Windrop</AssemblyName>
     <RootNamespace>Windrop.App</RootNamespace>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <Product>Archura Windrop</Product>
+    <Company>Archura</Company>
+    <Copyright>Copyright © 2026 Archura</Copyright>
     <ImplicitUsings>disable</ImplicitUsings>
   </PropertyGroup>
+  <ItemGroup>
+    <Resource Include="Assets\app-icon.ico" />
+    <Resource Include="Assets\app-icon.png" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Windrop.Domain\Windrop.Domain.csproj" />
     <ProjectReference Include="..\Windrop.Data\Windrop.Data.csproj" />

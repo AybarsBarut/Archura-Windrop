@@ -13,9 +13,7 @@ public sealed class TrayShell : IUserNotificationService, IDisposable
     private readonly Dispatcher _wpfDispatcher;
     private readonly Thread _trayThread;
     private readonly ManualResetEventSlim _ready = new(false);
-    private readonly Icon _idle = SystemIcons.Information;
-    private readonly Icon _receiving = SystemIcons.Shield;
-    private readonly Icon _error = SystemIcons.Error;
+    private readonly Icon _appIcon;
     private Forms.Control? _marshalControl;
     private Forms.NotifyIcon? _icon;
     private Forms.ContextMenuStrip? _menu;
@@ -29,6 +27,7 @@ public sealed class TrayShell : IUserNotificationService, IDisposable
     {
         _wpfDispatcher = dispatcher;
         _language = language;
+        _appIcon = LoadApplicationIcon();
         _trayThread = new Thread(() => RunTrayLoop(showWindow, exit))
         {
             IsBackground = true,
@@ -57,7 +56,7 @@ public sealed class TrayShell : IUserNotificationService, IDisposable
                 (_, _) => _wpfDispatcher.BeginInvoke(exit));
             _icon = new Forms.NotifyIcon
             {
-                Icon = _idle,
+                Icon = _appIcon,
                 Text = "Archura Windrop",
                 Visible = true,
                 ContextMenuStrip = _menu
@@ -82,7 +81,7 @@ public sealed class TrayShell : IUserNotificationService, IDisposable
     public void SetStatus(TrayStatus status, string text) => PostToTray(() =>
     {
         if (_icon is null) return;
-        _icon.Icon = status switch { TrayStatus.Receiving => _receiving, TrayStatus.Error => _error, _ => _idle };
+        _icon.Icon = _appIcon;
         _icon.Text = text.Length > 63 ? text[..63] : text;
     });
 
@@ -99,7 +98,7 @@ public sealed class TrayShell : IUserNotificationService, IDisposable
     public void Received(ReceivedItem item) => PostToTray(() =>
     {
         if (_icon is null) return;
-        _icon.Icon = _idle;
+        _icon.Icon = _appIcon;
         _icon.Text = Localizer.Get(_language, UiText.Ready);
         _icon.ShowBalloonTip(4000, Localizer.Get(_language, UiText.ContentReceived),
             Localizer.Format(_language, UiText.ContentReceivedBody, item.DisplayName), Forms.ToolTipIcon.Info);
@@ -108,7 +107,7 @@ public sealed class TrayShell : IUserNotificationService, IDisposable
     public void Error(string message) => PostToTray(() =>
     {
         if (_icon is null) return;
-        _icon.Icon = _error;
+        _icon.Icon = _appIcon;
         _icon.Text = message.Length > 63 ? message[..63] : message;
         _icon.ShowBalloonTip(5000, Localizer.Get(_language, UiText.Error), message, Forms.ToolTipIcon.Error);
     });
@@ -124,6 +123,15 @@ public sealed class TrayShell : IUserNotificationService, IDisposable
             else action();
         }
         catch (InvalidOperationException) when (Volatile.Read(ref _disposed) != 0) { }
+    }
+
+    private static Icon LoadApplicationIcon()
+    {
+        var resource = Application.GetResourceStream(new Uri("pack://application:,,,/Assets/app-icon.ico"))
+            ?? throw new InvalidOperationException("The application icon resource is missing.");
+        using (resource.Stream)
+        using (var icon = new Icon(resource.Stream))
+            return (Icon)icon.Clone();
     }
 
     public async Task<bool> ApproveAsync(string source, TimeSpan timeout, CancellationToken cancellationToken = default)
@@ -244,6 +252,7 @@ public sealed class TrayShell : IUserNotificationService, IDisposable
             catch (InvalidOperationException) { }
         }
         if (Thread.CurrentThread != _trayThread) _trayThread.Join(TimeSpan.FromSeconds(3));
+        _appIcon.Dispose();
         _ready.Dispose();
     }
 }

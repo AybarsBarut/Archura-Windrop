@@ -1,5 +1,9 @@
 # Archura Windrop
 
+<p align="center">
+  <img src="src/Windrop.App/Assets/app-icon.png" width="160" alt="Archura Windrop icon">
+</p>
+
 Archura Windrop is a Windows tray application that receives content from iPhone, iPad, and macOS over the local network by presenting the PC as an AirPrint destination.
 
 Instead of printing the incoming job, Windrop saves it, converts it when appropriate, copies a useful representation to the Windows clipboard, and keeps a local history. It is designed to feel like a lightweight receive bridge without attempting to implement Apple's private AirDrop/AWDL protocol.
@@ -13,6 +17,14 @@ Instead of printing the incoming job, Windrop saves it, converts it when appropr
 
 > [!IMPORTANT]
 > Windrop uses the Apple **Share → Print** workflow. It is not a native AirDrop protocol implementation.
+
+## Download
+
+Download the latest one-click Windows installer from [GitHub Releases](https://github.com/AybarsBarut/Archura-Windrop/releases/latest):
+
+**`Archura-Windrop-Setup-v1.0.0-win-x64.exe`**
+
+The installer includes the .NET runtime, adds the required local-network firewall rules, creates application shortcuts, and can launch Windrop immediately. Administrator approval is required during setup. Because the first public build is not code-signed, Windows SmartScreen may show an **Unknown publisher** warning; verify the SHA-256 checksum included with the release before running it.
 
 ## Features
 
@@ -65,6 +77,12 @@ iOS Simulator cannot be used for AirPrint/mDNS validation. A physical Apple devi
 dotnet restore Windrop.slnx
 dotnet build Windrop.slnx
 dotnet run --project src\Windrop.App\Windrop.App.csproj
+```
+
+To build the self-contained Windows installer, install [Inno Setup 6](https://jrsoftware.org/isinfo.php) and run:
+
+```powershell
+.\scripts\Build-Release.ps1 -Version 1.0.0
 ```
 
 Install the local-subnet firewall rules from an elevated PowerShell window:
@@ -153,3 +171,7 @@ Windrop'u başlatın, yönetici PowerShell'inde firewall betiğini çalıştır�
 ## Current limitation
 
 URF jobs are preserved safely as files, but direct URF raster-to-bitmap decoding is not implemented yet. PDF, PNG, and JPEG are the preferred advertised paths.
+
+## License
+
+[MIT](LICENSE)
