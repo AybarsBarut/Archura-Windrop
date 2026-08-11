@@ -1,0 +1,11 @@
+bin/
+obj/
+.vs/
+*.user
+*.suo
+artifacts/
+Received/
+*.receiving
+mobile_*.pdf
+mobile_*.png
+*.preview.png

@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Windrop.Domain/Windrop.Domain.csproj" />
+    <Project Path="src/Windrop.Data/Windrop.Data.csproj" />
+    <Project Path="src/Windrop.Infrastructure/Windrop.Infrastructure.csproj" />
+    <Project Path="src/Windrop.App/Windrop.App.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Windrop.ProtocolTests/Windrop.ProtocolTests.csproj" />
+  </Folder>
+</Solution>

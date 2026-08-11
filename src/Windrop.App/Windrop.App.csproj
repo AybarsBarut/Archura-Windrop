@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AssemblyName>Archura.Windrop</AssemblyName>
+    <RootNamespace>Windrop.App</RootNamespace>
+    <ImplicitUsings>disable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Windrop.Domain\Windrop.Domain.csproj" />
+    <ProjectReference Include="..\Windrop.Data\Windrop.Data.csproj" />
+    <ProjectReference Include="..\Windrop.Infrastructure\Windrop.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>

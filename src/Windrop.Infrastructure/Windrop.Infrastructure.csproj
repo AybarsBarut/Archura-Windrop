@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Windrop.Domain\Windrop.Domain.csproj" />
+    <ProjectReference Include="..\Windrop.Data\Windrop.Data.csproj" />
+    <PackageReference Include="PdfPig" Version="0.1.13" />
+  </ItemGroup>
+</Project>
