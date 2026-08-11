@@ -4,6 +4,13 @@ Archura Windrop is a Windows tray application that receives content from iPhone,
 
 Instead of printing the incoming job, Windrop saves it, converts it when appropriate, copies a useful representation to the Windows clipboard, and keeps a local history. It is designed to feel like a lightweight receive bridge without attempting to implement Apple's private AirDrop/AWDL protocol.
 
+#Screenshots
+<img width="1920" height="1031" alt="{E4354F70-6F2A-42B6-93DC-55CF1DF41241}" src="https://github.com/user-attachments/assets/91e76a49-0080-4822-95e3-2d348af75b49" />
+<img width="1920" height="1033" alt="{C465B374-B885-49A3-8FC3-A98EC47A8817}" src="https://github.com/user-attachments/assets/422d17b5-6a17-46c9-9aa9-acce1f7b841f" />
+<img width="1920" height="1034" alt="{EF6ED9A2-E114-467F-8795-6FFA8E946220}" src="https://github.com/user-attachments/assets/aabf469c-28f7-4c4a-a939-85e75e1f3d0b" />
+
+
+
 > [!IMPORTANT]
 > Windrop uses the Apple **Share → Print** workflow. It is not a native AirDrop protocol implementation.
 
