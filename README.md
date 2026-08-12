@@ -22,7 +22,7 @@ Instead of printing the incoming job, Windrop saves it, converts it when appropr
 
 Download the latest one-click Windows installer from [GitHub Releases](https://github.com/AybarsBarut/Archura-Windrop/releases/latest):
 
-**`Archura-Windrop-Setup-v1.0.0-win-x64.exe`**
+**`Archura-Windrop-Setup-v1.0.1-win-x64.exe`**
 
 The installer includes the .NET runtime, adds the required local-network firewall rules, creates application shortcuts, and can launch Windrop immediately. Administrator approval is required during setup. Because the first public build is not code-signed, Windows SmartScreen may show an **Unknown publisher** warning; verify the SHA-256 checksum included with the release before running it.
 
@@ -82,7 +82,7 @@ dotnet run --project src\Windrop.App\Windrop.App.csproj
 To build the self-contained Windows installer, install [Inno Setup 6](https://jrsoftware.org/isinfo.php) and run:
 
 ```powershell
-.\scripts\Build-Release.ps1 -Version 1.0.0
+.\scripts\Build-Release.ps1 -Version 1.0.1
 ```
 
 Install the local-subnet firewall rules from an elevated PowerShell window:

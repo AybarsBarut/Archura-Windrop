@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1 - 2026-08-12
+
+- Fix installer firewall command quoting so IPP and mDNS rules are created and removed reliably.
+- Keep the Apps & Features display name stable across versions for WinGet package correlation.
+- Add manually maintained WinGet Community Repository manifests.
+
 ## 1.0.0 - 2026-08-11
 
 - First public Windows release of Archura Windrop.

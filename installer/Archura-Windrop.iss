@@ -24,6 +24,7 @@ OutputDir=..\artifacts\installer
 OutputBaseFilename=Archura-Windrop-Setup-v{#AppVersion}-win-x64
 SetupIconFile=..\src\Windrop.App\Assets\app-icon.ico
 UninstallDisplayIcon={app}\{#AppExeName}
+UninstallDisplayName={#AppName}
 Compression=lzma2/ultra64
 SolidCompression=yes
 WizardStyle=modern
@@ -57,12 +58,12 @@ Name: "{autoprograms}\Archura Windrop"; Filename: "{app}\{#AppExeName}"; Working
 Name: "{autodesktop}\Archura Windrop"; Filename: "{app}\{#AppExeName}"; WorkingDir: "{app}"; Tasks: desktopicon
 
 [Run]
-Filename: "{sys}\netsh.exe"; Parameters: "advfirewall firewall delete rule name=&quot;Archura Windrop IPP&quot;"; Flags: runhidden waituntilterminated
-Filename: "{sys}\netsh.exe"; Parameters: "advfirewall firewall add rule name=&quot;Archura Windrop IPP&quot; dir=in action=allow protocol=TCP localport=8631 remoteip=LocalSubnet profile=private,public program=&quot;{app}\{#AppExeName}&quot;"; Flags: runhidden waituntilterminated
-Filename: "{sys}\netsh.exe"; Parameters: "advfirewall firewall delete rule name=&quot;Archura Windrop mDNS&quot;"; Flags: runhidden waituntilterminated
-Filename: "{sys}\netsh.exe"; Parameters: "advfirewall firewall add rule name=&quot;Archura Windrop mDNS&quot; dir=in action=allow protocol=UDP localport=5353 remoteip=LocalSubnet profile=private,public program=&quot;{app}\{#AppExeName}&quot;"; Flags: runhidden waituntilterminated
+Filename: "{sys}\netsh.exe"; Parameters: "advfirewall firewall delete rule name=""Archura Windrop IPP"""; Flags: runhidden waituntilterminated
+Filename: "{sys}\netsh.exe"; Parameters: "advfirewall firewall add rule name=""Archura Windrop IPP"" dir=in action=allow protocol=TCP localport=8631 remoteip=LocalSubnet profile=private,public program=""{app}\{#AppExeName}"""; Flags: runhidden waituntilterminated
+Filename: "{sys}\netsh.exe"; Parameters: "advfirewall firewall delete rule name=""Archura Windrop mDNS"""; Flags: runhidden waituntilterminated
+Filename: "{sys}\netsh.exe"; Parameters: "advfirewall firewall add rule name=""Archura Windrop mDNS"" dir=in action=allow protocol=UDP localport=5353 remoteip=LocalSubnet profile=private,public program=""{app}\{#AppExeName}"""; Flags: runhidden waituntilterminated
 Filename: "{app}\{#AppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(AppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
 [UninstallRun]
-Filename: "{sys}\netsh.exe"; Parameters: "advfirewall firewall delete rule name=&quot;Archura Windrop IPP&quot;"; Flags: runhidden waituntilterminated; RunOnceId: "RemoveIppFirewallRule"
-Filename: "{sys}\netsh.exe"; Parameters: "advfirewall firewall delete rule name=&quot;Archura Windrop mDNS&quot;"; Flags: runhidden waituntilterminated; RunOnceId: "RemoveMdnsFirewallRule"
+Filename: "{sys}\netsh.exe"; Parameters: "advfirewall firewall delete rule name=""Archura Windrop IPP"""; Flags: runhidden waituntilterminated; RunOnceId: "RemoveIppFirewallRule"
+Filename: "{sys}\netsh.exe"; Parameters: "advfirewall firewall delete rule name=""Archura Windrop mDNS"""; Flags: runhidden waituntilterminated; RunOnceId: "RemoveMdnsFirewallRule"
